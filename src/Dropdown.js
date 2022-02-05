@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 
-const Dropdown = ({ options, selected, onSelect }) => {
+const Dropdown = ({ options, selected, onSelect,label }) => {
     const [ open, setOpen ] = useState(false);
     const optionData = options.map((option) => {
         if (option.value == selected.value) {
@@ -15,7 +15,6 @@ const Dropdown = ({ options, selected, onSelect }) => {
 
     useEffect(() => {
         document.body.addEventListener('click', () => {
-            console.log('body called');
             setOpen(false);
         });
     }, []);
@@ -24,7 +23,7 @@ const Dropdown = ({ options, selected, onSelect }) => {
         <div className='ui form'>
             <div className='field'>
                 <label htmlFor='' className='label'>
-                    Select a color
+                    {label || ''}
                 </label>
                 <div className='ui selection dropdown' onClick={(e) => {console.log('parent called');setOpen(!open);e.stopPropagation();;}}>
                     <i className={`drodown icon ${open ? 'visible active' : ''}`} />

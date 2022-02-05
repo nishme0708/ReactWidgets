@@ -1,10 +1,10 @@
-import React,{useState} from 'react';
+import React, { useState } from 'react';
 import Accordion from './Accordion';
 import Search from './Search';
 import Dropdown from './Dropdown';
+import Translate from './Translate';
 
 const App = () => {
-    
     let items = [
         {
             title: 'What is React?',
@@ -37,9 +37,11 @@ const App = () => {
             value: 'yellow'
         }
     ];
-    let [colorState,setColorState] = useState(dropdownItems[0]);
+    
+    let [ colorState, setColorState ] = useState(dropdownItems[0]);
     // return <Accordion items={items} />;
-    return <Dropdown options={dropdownItems} selected={colorState} onSelect={setColorState}/>;
+    // return <Dropdown options={dropdownItems} selected={colorState} onSelect={setColorState}/>;
+    return <Translate/>;
 };
 
 export default App;
