@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const Convert = ({ language, text }) => {
     const [ response, setResponse ] = useState('');
+    const [ debounceText, setDebounceText ] = useState('');
     useEffect(
         () => {
             if (text && language) {
@@ -12,7 +13,7 @@ const Convert = ({ language, text }) => {
                         {},
                         {
                             params: {
-                                q: text,
+                                q: debounceText,
                                 target: language,
                                 key: 'AIzaSyCHUCmpR7cT_yDFHC98CZJy2LTms-IwDlM'
                             }
@@ -22,6 +23,19 @@ const Convert = ({ language, text }) => {
                     .then((data) => data.translations[0].translatedText)
                     .then(setResponse);
             }
+        },
+        [ debounceText ]
+    );
+
+    useEffect(
+        () => {
+            let timer;
+            if (text && language) {
+                timer = setTimeout(() => setDebounceText(text), 500);
+            }
+            return () => {
+                clearTimeout(timer);
+            };
         },
         [ language, text ]
     );
