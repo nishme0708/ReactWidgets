@@ -4,6 +4,7 @@ import Search from './Search';
 import Dropdown from './Dropdown';
 import Translate from './Translate';
 import Router from './Router';
+import Header from './Header';
 
 const App = () => {
     let items = [
@@ -39,32 +40,12 @@ const App = () => {
         }
     ];
 
-    const showAccordion = () => {
-        if (window.location.pathname === '/') {
-            return <Accordion items={items} />;
-        }
-    };
-    const showDropDown = () => {
-        if (window.location.pathname == '/dropdown') {
-            return <Dropdown options={dropdownItems} selected={colorState} onSelect={setColorState} />;
-        }
-    };
-
-    const showTranslate = () => {
-        if (window.location.pathname === '/translate') {
-            return <Translate />;
-        }
-    };
-
-    const showList = () => {
-        if (window.location.pathname === '/list') {
-            return <Search />;
-        }
-    };
+    
 
     let [ colorState, setColorState ] = useState(dropdownItems[0]);
     return (
         <div>
+            <Header></Header>
             {
                 <Router path='/'>
                     <Accordion items={items} />
